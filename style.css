@@ -1,0 +1,36 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+.cart {
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: 300px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.item span {
+  margin: 0 5px;
+}
+
+button {
+  margin: 0 3px;
+  cursor: pointer;
+}
+
+.heart {
+  color: gray;
+  border: none;
+  background: none;
+  font-size: 18px;
+}
+
+.heart.liked {
+  color: red;
+}
