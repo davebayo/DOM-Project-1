@@ -39,27 +39,31 @@ function updateTotal() {
 
 */
 
+// Function to update the total price
 function updateTotal() {
   let total = 0;
-  document.querySelectorAll(".item").forEach(item => {
-    const price = parseFloat(item.querySelector(".price").textContent);
-    const qty = parseInt(item.querySelector(".quantity").textContent);
+  document.querySelectorAll(".card").forEach(card => {
+    const priceText = card.querySelector(".unit-price").textContent;
+    const price = parseFloat(priceText.replace("$", ""));
+    const qty = parseInt(card.querySelector(".quantity").textContent);
     total += price * qty;
   });
-  document.querySelector("#total").textContent = total.toFixed(2);
+  document.querySelector(".total").textContent = total + " $";
 }
 
-document.querySelectorAll(".plus").forEach(btn => {
+// Handle quantity increase
+document.querySelectorAll(".fa-plus-circle").forEach(btn => {
   btn.addEventListener("click", () => {
-    const qty = btn.previousElementSibling;
+    const qty = btn.nextElementSibling;
     qty.textContent = parseInt(qty.textContent) + 1;
     updateTotal();
   });
 });
 
-document.querySelectorAll(".minus").forEach(btn => {
+// Handle quantity decrease
+document.querySelectorAll(".fa-minus-circle").forEach(btn => {
   btn.addEventListener("click", () => {
-    const qty = btn.nextElementSibling;
+    const qty = btn.previousElementSibling;
     if (parseInt(qty.textContent) > 0) {
       qty.textContent = parseInt(qty.textContent) - 1;
       updateTotal();
@@ -67,16 +71,19 @@ document.querySelectorAll(".minus").forEach(btn => {
   });
 });
 
-document.querySelectorAll(".delete").forEach(btn => {
+// Handle delete item
+document.querySelectorAll(".fa-trash-alt").forEach(btn => {
   btn.addEventListener("click", () => {
-    btn.parentElement.remove();
+    btn.closest(".card-body").remove();
     updateTotal();
   });
 });
 
-document.querySelectorAll(".heart").forEach(btn => {
+// Handle like (heart toggle)
+document.querySelectorAll(".fa-heart").forEach(btn => {
   btn.addEventListener("click", () => {
     btn.classList.toggle("liked");
+    btn.style.color = btn.classList.contains("liked") ? "red" : "black";
   });
 });
 
